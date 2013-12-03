@@ -1,0 +1,9 @@
+%h1 Welcome to Bedrocket Tracker
+= form_tag(unlock_path, method: :post) do
+  %h1 Enter Password
+  .inset
+    %p
+      %label{:for => "password"} PASSWORD
+      %input#password{:name => "password", :placeholder => "Password", :type => "password"}/
+  %p.p-container
+    %input#go{:name => "go", :type => "submit", :value => "Log in"}/

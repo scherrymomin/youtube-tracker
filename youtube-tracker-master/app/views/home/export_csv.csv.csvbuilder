@@ -1,0 +1,39 @@
+today = TimeUtil.today
+
+csv << [ "Video Name",
+         "Ranking",
+         "Views",
+         "Avg Views Per Day - First 7 Days",
+         "Avg Views Per Day - First 30 Days",
+         "Avg Views Per Day - First 60 Days",
+         "Comments",
+         "Subscribers Gained",
+         "Subscribers Lost",
+         "Favorites Added",
+         "Favorites Removed",
+         "Likes",
+         "Dislikes",
+         "Shares",
+         "Upload Date"
+         ]
+
+@videos.each do |p|
+  next unless last_info = p.last_info
+  csv << [p.title,
+         last_info.tracker.this_week_rank,
+         number_with_delimiter(last_info.view_count),
+         number_with_delimiter(p.avg_views_per_day(today - 7.days  .. today).first[:day_view_count]),
+         number_with_delimiter(p.avg_views_per_day(today - 30.days .. today).first[:day_view_count]),
+         number_with_delimiter(p.avg_views_per_day(today - 60.days .. today).first[:day_view_count]),
+         number_with_delimiter(last_info.comment_count), # "Comments",
+         "",               # Subscribers Gained
+         "",               # Subscribers Lost
+         "",               # Favorites Added
+         "",               # Favorites Removed
+         number_with_delimiter(last_info.likes),
+         number_with_delimiter(last_info.dislikes),
+         "",               # Shares
+         p.uploaded_at.try(:getlocal).try(:strftime, '%m/%d/%Y')
+    ]
+end
+

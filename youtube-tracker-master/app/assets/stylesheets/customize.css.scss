@@ -1,0 +1,66 @@
+body{
+	.navbar.navbar-fluid-top .navbar-inner{
+		min-width: 678px;
+		> .container-fluid{
+			max-width: 1170px;
+			min-width: 678px;
+			margin: auto;
+		}
+
+	}
+	> .container-fluid{
+		max-width: 1170px;
+		min-width: 678px;
+		margin: auto;
+	}
+	.section-name{
+		color: #666;
+	}
+	.number{
+		font-weight: bolder;
+		font-size: 150%;
+		&.decrease{
+		  span{
+			  background: url(decrease.png) center no-repeat;
+			  background-size: 16px 16px;
+			  padding-right: 25px;
+		  }
+		}
+		&.increase{
+			span{
+				background: url(increase.png) center no-repeat;
+			  background-size: 16px 16px;
+			  padding-right: 25px;
+			}
+		}
+
+	}
+	.desc{
+		color: #707070;
+	}
+	.goals{
+		padding: 15px 0px 25px 0px;
+		.span3{
+			text-align: center;
+		}
+	}
+	.status-box{
+		margin-top: 10px;
+		border: 1px solid #000;
+		padding: 20px 10px;
+		.line{
+			border: 1px solid #666;
+			width: 50%;
+			margin: 0 auto;
+		}
+		> .row{
+			margin-left: 0px;
+			.span3{
+				text-align: center;
+				margin-bottom: 20px;
+				margin-top: 20px;
+			}
+		}
+	}
+}
+

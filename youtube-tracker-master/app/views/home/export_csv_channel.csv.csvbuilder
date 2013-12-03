@@ -1,0 +1,37 @@
+csv << [ "Date",
+         "Views Today",
+         "Aggregate Views",
+         "Number of Videos",
+         "Average Views Per Video",
+         "Subscriber Net Change",
+         "Subscribers Gained",
+         "Subscribers Lost",
+         "Aggregate Subscribers",
+         "VSCR (%)",
+         "Facebook Likes",
+         "Facebook Talking About",
+         "Twitter Followers"
+         ]
+
+@day_channels.each do |p|
+  video_info = DayVideo.where(:imported_date => p.imported_date).select('sum(view_count) as view_count').
+    select('count(id) as num_videos, avg(view_count) as avg_views').first
+
+  day_fb_info = DayFacebookInfo.where(:imported_date => p.imported_date).first
+  day_twitter_info = DayTwitterInfo.where(:imported_date => p.imported_date).first
+  csv << [(p.imported_date.getlocal - 1.day).try(:strftime, '%m/%d/%Y'),
+         number_with_delimiter(video_info[:view_count]),
+         '',                               # Aggregate Views
+         number_with_delimiter(video_info[:num_videos]),
+         number_with_delimiter(video_info[:avg_views]),
+         "",                               # Subscribers Gained
+         "",                               # Subscribers Lost
+         "",
+         "",
+         "",                               # VSCR (%)
+         day_fb_info.try(:likes) ? number_with_delimiter(day_fb_info.try(:likes)) :  '',
+         day_fb_info.try(:talking_about_count)  ? number_with_delimiter(day_fb_info.try(:talking_about_count)) : '',
+         day_twitter_info.try(:followers_count) ? number_with_delimiter(day_twitter_info.try(:followers_count)) : ''
+    ]
+end
+

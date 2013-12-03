@@ -1,0 +1,30 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body.home{
+  padding: 20px;
+  h2{ padding: 30px 10px;}
+  .logos{
+    width: 1024px;
+    height: 1000px;
+    margin: auto;
+    li{ 
+      &:hover{
+        background-color: #666;
+      }
+      width: 48%;
+      height: 48%;
+      background-color: #000;
+      float: left;
+      margin: 1%;
+      text-align: center;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      > .middle{
+        margin-top: 42%;
+      }
+    }
+  }
+}
